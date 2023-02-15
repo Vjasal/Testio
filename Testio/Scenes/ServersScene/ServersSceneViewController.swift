@@ -38,6 +38,11 @@ class ServersSceneViewController: UITableViewController, ServersSceneViewControl
         sceneView?.delegate = self
         setupView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
 }
 
 extension ServersSceneViewController: ServersSceneViewDelegate {
