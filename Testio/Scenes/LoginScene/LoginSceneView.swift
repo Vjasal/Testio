@@ -54,6 +54,13 @@ class LoginSceneView: UIView {
         return label
     }()
     
+    lazy var loginStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 40
+        return stackView
+    }()
+    
     lazy var loginView = UIView()
     lazy var loadingView = UIView()
     
@@ -75,7 +82,7 @@ class LoginSceneView: UIView {
 
 extension LoginSceneView {
     
-    func setupLayout() {
+    func setupView() {
         let textFieldStackView = UIStackView(arrangedSubviews: [usernameTextField, passwordTextField])
         textFieldStackView.axis = .vertical
         textFieldStackView.spacing = 16
@@ -84,9 +91,8 @@ extension LoginSceneView {
         inputFormStackView.axis = .vertical
         inputFormStackView.spacing = 24
         
-        let loginStackView = UIStackView(arrangedSubviews: [logoView, inputFormStackView])
-        loginStackView.axis = .vertical
-        loginStackView.spacing = 40
+        loginStackView.addArrangedSubview(logoView)
+        loginStackView.addArrangedSubview(inputFormStackView)
         
         loginView.addSubview(loginStackView)
         loadingView.addSubview(loadingIndivator)
@@ -103,6 +109,10 @@ extension LoginSceneView {
         loadingView.translatesAutoresizingMaskIntoConstraints = false
         loginStackView.translatesAutoresizingMaskIntoConstraints = false
         
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
             backgroundView.widthAnchor.constraint(equalTo: backgroundView.heightAnchor, multiplier: 75 / 66),
             backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor),

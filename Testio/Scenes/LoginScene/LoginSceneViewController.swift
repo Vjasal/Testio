@@ -26,7 +26,7 @@ class LoginSceneViewController: UIViewController, LoginSceneViewControllerProtoc
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginView?.setupLayout()
+        loginView?.setupView()
         loginView?.loginButton.addTarget(self, action: #selector(handleLoginButtonTapped), for: .touchUpInside)
         loginView?.usernameTextField.delegate = self
         loginView?.passwordTextField.delegate = self
@@ -83,8 +83,6 @@ extension LoginSceneViewController {
     }
     
     func showLoginErrorAlert(_ error: Error) {
-        print("Login error: \(error)")
-        
         let alert = UIAlertController(title: "Verification Failed", message: "Your username or password is incorrect.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)

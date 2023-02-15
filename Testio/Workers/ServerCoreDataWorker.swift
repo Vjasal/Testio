@@ -43,7 +43,7 @@ class ServerCoreDataWorker {
     
     func save(servers: [Server]) {
         do {
-            let _ = servers.map({ ManagedServer(context: viewContext, server: $0) })
+            _ = servers.map({ ManagedServer(context: viewContext, server: $0) })
             try viewContext.save()
         } catch {
             fatalError("Failed to save: \(error)")

@@ -1,4 +1,3 @@
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -8,19 +7,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         
-//        let viewController = LoginSceneViewController()
-//        LoginSceneConfigurator.configureModule(viewController: viewController)
-        
         let servers = ServerCoreDataWorker.shared.fetch()
         
         let viewController: UIViewController
         if servers.isEmpty {
-            print("hubert | start -> login")
             let loginViewController = LoginSceneViewController()
             LoginSceneConfigurator.configureModule(viewController: loginViewController)
             viewController = loginViewController
         } else {
-            print("hubert | start -> servers")
             let serversViewController = ServersSceneViewController(servers: servers)
             ServersSceneConfigurator.configureModule(viewController: serversViewController)
             viewController = serversViewController
@@ -63,6 +57,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
-
-
 }
