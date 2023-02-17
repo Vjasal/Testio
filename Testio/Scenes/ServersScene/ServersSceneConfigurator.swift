@@ -1,10 +1,3 @@
-//
-//  ServerListConfigurator.swift
-//  Testio
-//
-//  Created by Hubert Rytel on 10/02/2023.
-//
-
 import Foundation
 
 class ServersSceneConfigurator {
