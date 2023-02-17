@@ -16,6 +16,7 @@ class ServersSceneInteractor: ServersSceneInteractorProtocol {
     }
     
     func logout() {
+        KeychainWorker.shared.deleteCredentials()
         ServerCoreDataWorker.shared.deleteAll()
         presenter?.handleLogout()
     }

@@ -7,8 +7,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = scene as? UIWindowScene else { return }
         
-        let viewController = LoginSceneViewController()
-        LoginSceneConfigurator.configureModule(viewController: viewController)
+        let viewController: UIViewController
+        if KeychainWorker.shared.hasCredentials(), ServerCoreDataWorker.shared.fetch().isEmpty == false {
+            let serversViewController = ServersSceneViewController()
+            ServersSceneConfigurator.configureModule(viewController: serversViewController)
+            viewController = serversViewController
+        } else {
+            let loginViewController = LoginSceneViewController()
+            LoginSceneConfigurator.configureModule(viewController: loginViewController)
+            viewController = loginViewController
+        }
         
         let navigationController = UINavigationController(rootViewController: viewController)
         navigationController.navigationBar.backgroundColor = .white

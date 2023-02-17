@@ -30,6 +30,7 @@ class LoginSceneViewController: UIViewController, LoginSceneViewControllerProtoc
         loginView?.loginButton.addTarget(self, action: #selector(handleLoginButtonTapped), for: .touchUpInside)
         loginView?.usernameTextField.delegate = self
         loginView?.passwordTextField.delegate = self
+        interactor?.loginWithSavedCredentials()
     }
     
     override func viewWillAppear(_ animated: Bool) {

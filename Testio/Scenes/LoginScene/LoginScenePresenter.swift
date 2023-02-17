@@ -14,6 +14,9 @@ class LoginScenePresenter: LoginScenePresenterProtocol {
     weak var viewController: LoginSceneViewControllerProtocol?
     
     func handleLoginSuccess(token: String) {
+        DispatchQueue.main.async {
+            self.viewController?.showLoadingServerListIndicator()
+        }
         self.viewController?.handleLoginSuccess(token: token)
     }
     

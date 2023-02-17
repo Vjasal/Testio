@@ -30,6 +30,7 @@
 		B48F1E74299BC01100F2E360 /* LoginAuthWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F1E73299BC01100F2E360 /* LoginAuthWorker.swift */; };
 		B48F1E76299D453000F2E360 /* ServerCoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F1E75299D453000F2E360 /* ServerCoreDataWorker.swift */; };
 		B48F1E80299D589D00F2E360 /* TestioModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B48F1E7E299D589D00F2E360 /* TestioModel.xcdatamodeld */; };
+		B48F1E85299FDD6D00F2E360 /* KeychainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48F1E84299FDD6D00F2E360 /* KeychainWorker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		B48F1E73299BC01100F2E360 /* LoginAuthWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAuthWorker.swift; sourceTree = "<group>"; };
 		B48F1E75299D453000F2E360 /* ServerCoreDataWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerCoreDataWorker.swift; sourceTree = "<group>"; };
 		B48F1E7F299D589D00F2E360 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
+		B48F1E84299FDD6D00F2E360 /* KeychainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainWorker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				B48F1E73299BC01100F2E360 /* LoginAuthWorker.swift */,
 				B48F1E662996F2D400F2E360 /* ServerListWorker.swift */,
 				B48F1E75299D453000F2E360 /* ServerCoreDataWorker.swift */,
+				B48F1E84299FDD6D00F2E360 /* KeychainWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B48F1E72299A83BD00F2E360 /* AuthRequestModel.swift in Sources */,
+				B48F1E85299FDD6D00F2E360 /* KeychainWorker.swift in Sources */,
 				B44DB63F2996D9200035820B /* ServersSceneViewController.swift in Sources */,
 				B48F1E6A2996F39F00F2E360 /* Constants.swift in Sources */,
 				B44DB62B2996AA250035820B /* LoginScenePresenter.swift in Sources */,
