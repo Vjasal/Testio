@@ -25,14 +25,14 @@ class LoginSceneInteractor: LoginSceneInteractorProtocol {
     func getServers(token: String) async {
         let savedServers = ServerCoreDataWorker.shared.fetch()
         guard savedServers.isEmpty else {
-            presenter?.handleServersReceived(servers: savedServers)
+            presenter?.handleServersReceived()
             return
         }
         
         do {
             let servers = try await serverListWorker.fetchServerList(token: token)
             ServerCoreDataWorker.shared.save(servers: servers)
-            presenter?.handleServersReceived(servers: servers)
+            presenter?.handleServersReceived()
         } catch {
             presenter?.handleServersError(error)
         }

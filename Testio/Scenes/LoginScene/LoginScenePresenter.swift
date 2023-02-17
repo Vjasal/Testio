@@ -5,7 +5,7 @@ protocol LoginScenePresenterProtocol {
     
     func handleLoginSuccess(token: String)
     func handleLoginError(_ error: Error)
-    func handleServersReceived(servers: [Server])
+    func handleServersReceived()
     func handleServersError(_ error: Error)
 }
 
@@ -24,9 +24,9 @@ class LoginScenePresenter: LoginScenePresenterProtocol {
         }
     }
     
-    func handleServersReceived(servers: [Server]) {
+    func handleServersReceived() {
         DispatchQueue.main.async {
-            self.viewController?.handleServerListReceived(servers)
+            self.viewController?.handleServerListReceived()
         }
     }
     

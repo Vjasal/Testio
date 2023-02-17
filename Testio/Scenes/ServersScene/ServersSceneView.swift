@@ -7,7 +7,7 @@ protocol ServersSceneViewDelegate: AnyObject {
 
 class ServersSceneView {
     
-    lazy var leftBarButton: UIBarButtonItem = {
+    lazy var leftButton: UIButton = {
         var config = UIButton.Configuration.plain()
         config.title = "Filter"
         config.image = UIImage(systemName: "arrow.up.arrow.down")
@@ -18,12 +18,10 @@ class ServersSceneView {
         
         let button = UIButton(configuration: config)
         button.titleLabel?.font = .systemFont(ofSize: 17)
-        button.addTarget(self, action: #selector(handleFilterButtonTapped), for: .touchUpInside)
-        
-        return UIBarButtonItem(customView: button)
+        return button
     }()
     
-    lazy var rightBarButton: UIBarButtonItem = {
+    lazy var rightButton: UIButton = {
         var config = UIButton.Configuration.plain()
         config.title = "Logout"
         config.image = UIImage(named: "ServersSceneLogoutIcon")
@@ -34,22 +32,16 @@ class ServersSceneView {
         
         let button = UIButton(configuration: config)
         button.titleLabel?.font = .systemFont(ofSize: 17)
-        button.addTarget(self, action: #selector(handleLogoutButtonTapped), for: .touchUpInside)
-        
-        return UIBarButtonItem(customView: button)
+        return button
     }()
     
-    weak var delegate: ServersSceneViewDelegate?
-}
-
-extension ServersSceneView {
-    @objc func handleLogoutButtonTapped() {
-        delegate?.handleLogoutButtonTapped()
-    }
+    lazy var leftBarButton: UIBarButtonItem = {
+        return UIBarButtonItem(customView: leftButton)
+    }()
     
-    @objc func handleFilterButtonTapped() {
-        delegate?.handleFilterButtonTapped()
-    }
+    lazy var rightBarButton: UIBarButtonItem = {
+        return UIBarButtonItem(customView: rightButton)
+    }()
 }
 
 class ServersSceneTableViewCell: UITableViewCell {

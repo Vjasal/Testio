@@ -3,14 +3,14 @@ import Foundation
 protocol LoginSceneRouterProtocol {
     var entry: LoginSceneViewController? { get }
     
-    func navigateToServerListScene(servers: [Server])
+    func navigateToServerListScene()
 }
 
 class LoginSceneRouter: LoginSceneRouterProtocol {
     weak var entry: LoginSceneViewController?
     
-    func navigateToServerListScene(servers: [Server]) {
-        let viewController = ServersSceneViewController(servers: servers)
+    func navigateToServerListScene() {
+        let viewController = ServersSceneViewController()
         ServersSceneConfigurator.configureModule(viewController: viewController)
         entry?.navigationController?.pushViewController(viewController, animated: true)
     }

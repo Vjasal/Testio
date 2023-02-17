@@ -5,6 +5,7 @@ protocol ServersSceneViewControllerProtocol: AnyObject {
     var router: ServersSceneRouterProtocol? { get set }
     var sceneView: ServersSceneView? { get set }
     
+    func handleServersLoaded(_ servers: [Server])
     func handleLogoutDone()
 }
 
@@ -20,23 +21,12 @@ class ServersSceneViewController: UITableViewController, ServersSceneViewControl
     var sceneView: ServersSceneView?
     
     var filterType: FilterType = .alphabetical
-    
-    var servers: [Server]!
-    
-    init(servers: [Server]) {
-        self.servers = servers
-        super.init(nibName: nil, bundle: nil)
-        self.handleFilterTypeSelected(filterType)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    var servers = [Server]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sceneView?.delegate = self
         setupView()
+        interactor?.loadServers()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,11 +37,11 @@ class ServersSceneViewController: UITableViewController, ServersSceneViewControl
 
 extension ServersSceneViewController: ServersSceneViewDelegate {
     
-    func handleLogoutButtonTapped() {
+    @objc func handleLogoutButtonTapped() {
         interactor?.logout()
     }
     
-    func handleFilterButtonTapped() {
+    @objc func handleFilterButtonTapped() {
         let distanceAction = UIAlertAction(title: "By Distance", style: .default) { _ in
             self.handleFilterTypeSelected(.distance)
             self.tableView.reloadData()
@@ -79,7 +69,7 @@ extension ServersSceneViewController: ServersSceneViewDelegate {
         present(alert, animated: true)
     }
     
-    func handleFilterTypeSelected(_ filterType: FilterType) {
+    private func handleFilterTypeSelected(_ filterType: FilterType) {
         self.filterType = filterType
         switch filterType {
         case .distance:
@@ -91,6 +81,12 @@ extension ServersSceneViewController: ServersSceneViewDelegate {
 }
 
 extension ServersSceneViewController {
+    func handleServersLoaded(_ servers: [Server]) {
+        self.servers = servers
+        handleFilterTypeSelected(filterType)
+        tableView.reloadData()
+    }
+    
     func handleLogoutDone() {
         router?.navigateToLoginScene()
     }
@@ -105,6 +101,9 @@ extension ServersSceneViewController {
         navigationItem.title = "Testio."
         navigationItem.leftBarButtonItem = sceneView?.leftBarButton
         navigationItem.rightBarButtonItem = sceneView?.rightBarButton
+        
+        sceneView?.leftButton.addTarget(self, action: #selector(handleFilterButtonTapped), for: .touchUpInside)
+        sceneView?.rightButton.addTarget(self, action: #selector(handleLogoutButtonTapped), for: .touchUpInside)
     }
 }
 

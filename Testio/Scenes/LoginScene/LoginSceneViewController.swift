@@ -9,7 +9,7 @@ protocol LoginSceneViewControllerProtocol: AnyObject {
     func hideLoadingServerListIndicator()
     func handleLoginSuccess(token: String)
     func showLoginErrorAlert(_ error: Error)
-    func handleServerListReceived(_ servers: [Server])
+    func handleServerListReceived()
     func showServerListError(_ error: Error)
 }
 
@@ -89,12 +89,12 @@ extension LoginSceneViewController {
         present(alert, animated: true)
     }
     
-    func handleServerListReceived(_ servers: [Server]) {
+    func handleServerListReceived() {
         loginView?.usernameTextField.text = ""
         loginView?.passwordTextField.text = ""
         loginView?.usernameTextField.resignFirstResponder()
         loginView?.passwordTextField.resignFirstResponder()
-        router?.navigateToServerListScene(servers: servers)
+        router?.navigateToServerListScene()
     }
     
     func showServerListError(_ error: Error) {
